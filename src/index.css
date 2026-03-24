@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+:root {
+  --attune-rose: #e91e8c;
+  --attune-pink: #f472b6;
+  --attune-lavender: #c084fc;
+  --attune-plum: #7c3aed;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #fdf2f8;
+  color: #374151;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
