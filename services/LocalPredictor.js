@@ -1,12 +1,16 @@
 import * as tf from '@tensorflow/tfjs';
+import '@tensorflow/tfjs-react-native';
 import { addDays, parseISO, differenceInDays } from 'date-fns';
 
 /**
- * Predicts the next cycle start date using a localized ML model running in-browser.
+ * Predicts the next cycle start date using a localized ML model running on-device.
  * We use a simple sequential model trained on past cycle lengths to predict the next.
  */
 
 export const predictNextCycle = async (historicalCycles) => {
+  // Ensure the native TensorFlow backend is ready
+  await tf.ready();
+
   // If there's 0 or 1 cycle, fallback to simple average
   if (!historicalCycles || historicalCycles.length < 2) {
     const lastStart = historicalCycles?.[0]?.startDate || new Date().toISOString();

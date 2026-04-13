@@ -56,3 +56,36 @@ export const updateSettings = async (newSettings) => {
   await savePrivateData(data);
   return data;
 };
+
+// --- Daily Logging Helpers ---
+
+export const attachTask = async (dateStr, text) => {
+  const data = await getPrivateData();
+  if (!data.logs[dateStr]) data.logs[dateStr] = {};
+  if (!data.logs[dateStr].tasks) data.logs[dateStr].tasks = [];
+  
+  data.logs[dateStr].tasks.push({ id: Date.now().toString(), text, done: false });
+  await savePrivateData(data);
+  return data;
+};
+
+export const flipTaskNode = async (dateStr, taskId) => {
+  const data = await getPrivateData();
+  if (data.logs[dateStr] && data.logs[dateStr].tasks) {
+    data.logs[dateStr].tasks = data.logs[dateStr].tasks.map(t => 
+      t.id === taskId ? { ...t, done: !t.done } : t
+    );
+    await savePrivateData(data);
+  }
+  return data;
+};
+
+export const attachExercise = async (dateStr, text) => {
+  const data = await getPrivateData();
+  if (!data.logs[dateStr]) data.logs[dateStr] = {};
+  if (!data.logs[dateStr].exercises) data.logs[dateStr].exercises = [];
+  
+  data.logs[dateStr].exercises.push({ id: Date.now().toString(), text });
+  await savePrivateData(data);
+  return data;
+};
