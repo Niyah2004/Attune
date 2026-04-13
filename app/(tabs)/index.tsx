@@ -9,12 +9,20 @@ import { useTheme } from '../../theme/ThemeContext';
 
 export default function DashboardScreen() {
   const [data, setData] = useState<any>(null);
-  const [cycleDay, setCycleDay] = useState(13); // Mocking day 13 to match screenshot
+  const [cycleDay, setCycleDay] = useState(1);
+  const [totalDays, setTotalDays] = useState(28);
   const { colors, isDark } = useTheme();
 
   const loadData = async () => {
     const raw = await getPrivateData();
     setData(raw);
+    const cycleLength = raw?.settings?.averageCycleLength || 28;
+    setTotalDays(cycleLength);
+    if (raw?.cycles?.length) {
+      const start = new Date(raw.cycles[raw.cycles.length - 1].startDate);
+      const diff = Math.floor((Date.now() - start.getTime()) / (1000 * 60 * 60 * 24)) + 1;
+      setCycleDay(Math.max(1, Math.min(diff, cycleLength)));
+    }
   };
 
   useFocusEffect(
@@ -37,7 +45,7 @@ export default function DashboardScreen() {
            <View style={styles.moonGlow}>
              <LinearGradient colors={['#fff9e6', isDark ? colors.background : '#e0dad6']} style={styles.moonDisc} />
            </View>
-           <Text style={[styles.moonSubtitle, { color: colors.textMuted }]}>DAY {cycleDay} OF 28</Text>
+           <Text style={[styles.moonSubtitle, { color: colors.textMuted }]}>DAY {cycleDay} OF {totalDays}</Text>
         </View>
 
         {/* Phase Card */}
