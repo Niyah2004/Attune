@@ -27,16 +27,16 @@ interface PhaseData {
 
 const PHASES: Record<string, PhaseData> = {
   menstrual: {
-    label: 'Menstrual', subtitle: 'Days 1–5', energy: 'Low', mood: 'Reflective', tip: 'Rest & gentle movement', color: '#C0393B', days: [1, 5],
+    label: 'Menstrual', subtitle: 'Days 1–5', energy: 'Low', mood: 'Reflective', tip: 'Rest & gentle movement', color: '#d94b58', days: [1, 5],
   },
   follicular: {
-    label: 'Follicular', subtitle: 'Days 6–13', energy: 'Rising', mood: 'Optimistic', tip: 'Start new projects', color: '#C06030', days: [6, 13],
+    label: 'Follicular', subtitle: 'Days 6–13', energy: 'Rising', mood: 'Optimistic', tip: 'Start new projects', color: '#76a68f', days: [6, 13],
   },
   ovulation: {
-    label: 'Ovulation', subtitle: 'Days 14–16', energy: 'Peak', mood: 'Confident', tip: 'Connect & collaborate', color: '#7A7FD4', days: [14, 16],
+    label: 'Ovulation', subtitle: 'Days 14–16', energy: 'Peak', mood: 'Confident', tip: 'Connect & collaborate', color: '#6b8cae', days: [14, 16],
   },
   luteal: {
-    label: 'Luteal', subtitle: 'Days 17–28', energy: 'Declining', mood: 'Introspective', tip: 'Self-care & slow down', color: '#5A6FB0', days: [17, 28],
+    label: 'Luteal', subtitle: 'Days 17–28', energy: 'Declining', mood: 'Introspective', tip: 'Self-care & slow down', color: '#a67b5b', days: [17, 28],
   },
 };
 
@@ -63,25 +63,25 @@ function buildHTML(phase: string) {
 <script>
 const PHASES = {
   menstrual: {
-    bg: [18,8,8], primary: [192,57,59], secondary: [120,20,25], accent: [220,100,90],
+    bg: [21,7,8], primary: [217,75,88], secondary: [140,40,50], accent: [240,110,120],
     particles: 'drop', bloomSize: 0.35, petalCount: 5, wave: 'slow',
     label: 'Menstrual', subtitle: 'Days 1–5',
     desc: 'Uterine lining sheds. Estrogen & progesterone are low.',
   },
   follicular: {
-    bg: [18,12,6], primary: [192,96,48], secondary: [220,140,60], accent: [255,190,80],
+    bg: [11,16,14], primary: [118,166,143], secondary: [70,110,95], accent: [160,200,180],
     particles: 'bud', bloomSize: 0.6, petalCount: 7, wave: 'medium',
     label: 'Follicular', subtitle: 'Days 6–13',
     desc: 'Follicles develop. Estrogen rises, energy returns.',
   },
   ovulation: {
-    bg: [10,10,22], primary: [122,127,212], secondary: [80,80,180], accent: [200,200,255],
+    bg: [10,14,17], primary: [107,140,174], secondary: [65,95,125], accent: [150,180,210],
     particles: 'burst', bloomSize: 1.0, petalCount: 12, wave: 'fast',
     label: 'Ovulation', subtitle: 'Days 14–16',
     desc: 'Egg released. Estrogen peaks; LH surges.',
   },
   luteal: {
-    bg: [10,12,22], primary: [90,111,176], secondary: [60,80,140], accent: [150,170,220],
+    bg: [16,12,9], primary: [166,123,91], secondary: [110,75,55], accent: [195,155,125],
     particles: 'drift', bloomSize: 0.7, petalCount: 9, wave: 'medium',
     label: 'Luteal', subtitle: 'Days 17–28',
     desc: 'Progesterone rises then falls. PMS may occur.',
