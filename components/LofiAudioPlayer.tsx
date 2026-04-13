@@ -1,46 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, StyleSheet, View, Text } from 'react-native';
+import React, { useCallback } from 'react';
+import { TouchableOpacity, StyleSheet, View, Text, Linking, Alert } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { Audio } from 'expo-av';
 import { useTheme } from '../theme/ThemeContext';
 
 const LofiAudioPlayer = () => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [sound, setSound] = useState<Audio.Sound | null>(null);
   const { colors, isDark } = useTheme();
 
-  useEffect(() => {
-    return sound
-      ? () => {
-          sound.unloadAsync();
-        }
-      : undefined;
-  }, [sound]);
+  // You can customize this link to your exact preferred indie soft lofi playlist for the menstrual phase
+  const SPOTIFY_PLAYLIST_URL = 'https://open.spotify.com/playlist/37i9dQZF1DWWQRwui0ExPn'; 
 
-  const togglePlay = async () => {
+  const openPlaylist = useCallback(async () => {
     try {
-      if (isPlaying) {
-        if (sound) await sound.pauseAsync();
-        setIsPlaying(false);
+      const supported = await Linking.canOpenURL(SPOTIFY_PLAYLIST_URL);
+      if (supported) {
+        await Linking.openURL(SPOTIFY_PLAYLIST_URL);
       } else {
-        if (!sound) {
-          const { sound: newSound } = await Audio.Sound.createAsync(
-            { uri: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3' },
-            { shouldPlay: true, isLooping: true }
-          );
-          setSound(newSound);
+        if (typeof window !== 'undefined' && window.alert) {
+          window.alert("Couldn't open Spotify URL. Please check your browser.");
         } else {
-          await sound.playAsync();
+          Alert.alert("Couldn't open Spotify", "Please check if you have a web browser installed.");
         }
-        setIsPlaying(true);
       }
-    } catch (error: any) {
-      console.log('Error attempting to play audio:', error);
-      if (typeof window !== 'undefined') {
-        window.alert('Audio failed: ' + error.message);
-      }
+    } catch (error) {
+      console.error("An error occurred", error);
     }
-  };
+  }, []);
 
   return (
     <View style={[styles.shadowOffset, { backgroundColor: colors.border }]}>
@@ -53,20 +37,20 @@ const LofiAudioPlayer = () => {
           shadowOffset: { width: 0, height: 0 },
           shadowRadius: isDark ? 10 : 0
         }]}
-        onPress={togglePlay}
+        onPress={openPlaylist}
         activeOpacity={0.8}
       >
         <Feather 
-          name={isPlaying ? "pause" : "play"} 
+          name="music" 
           size={18} 
           color={colors.text} 
         />
         <View style={styles.textStack}>
-          <Text style={[styles.caption, { color: colors.textMuted }]}>NOW STREAMING</Text>
-          <Text style={[styles.title, { color: colors.text }]}>Gentle Acoustic & Rain</Text>
+          <Text style={[styles.caption, { color: colors.textMuted }]}>SONIC FLOW</Text>
+          <Text style={[styles.title, { color: colors.text }]}>Menstrual Phase Soft Lofi</Text>
         </View>
         <Feather 
-          name="volume-2" 
+          name="external-link" 
           size={16} 
           color={colors.textMuted} 
         />
