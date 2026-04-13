@@ -54,6 +54,9 @@ export default function OracleScreen() {
         <View style={styles.header}>
           <Text style={[styles.title, { color: colors.text }]}>The Oracle</Text>
           <Text style={[styles.subtitle, { color: colors.textMuted }]}>CYCLE INSIGHTS & HOROSCOPES</Text>
+          <Text style={[styles.headerTagline, { color: colors.text }]}>
+            "I am a seed of potential, ready to bloom in my own time."
+          </Text>
         </View>
 
         {/* Horoscope Card */}
@@ -107,7 +110,7 @@ export default function OracleScreen() {
             <View style={styles.recommendationBox}>
               <Text style={[styles.caption, { color: colors.textMuted }]}>RITUAL RECOMMENDATION</Text>
               <View style={[styles.ritualRow, { backgroundColor: colors.highlight }]}>
-                <Feather name="wind" size={14} color={colors.textMuted} />
+                <Feather name="wind" size={14} color={colors.textMuted} style={{ flexShrink: 0, marginTop: 3 }} />
                 <Text style={[styles.ritualText, { color: colors.text }]}>{phase.ritual}</Text>
               </View>
 
@@ -175,6 +178,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 'bold',
     letterSpacing: 2,
+  },
+  headerTagline: {
+    fontSize: 14,
+    fontStyle: 'italic',
+    textAlign: 'center',
+    marginTop: 12,
+    opacity: 0.7,
   },
 
   shadowOffset: {
@@ -279,11 +289,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'flex-start',
     gap: 12,
+    flexWrap: 'nowrap',
   },
   ritualText: {
     fontSize: 14,
     fontStyle: 'italic',
     flex: 1,
+    flexShrink: 1,
+    flexWrap: 'wrap',
     lineHeight: 22,
   },
 

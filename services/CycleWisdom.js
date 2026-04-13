@@ -14,6 +14,8 @@ export const getInnerSeason = (cycleDay, cycleLength = 28) => {
       feelings: "You may feel deeply introspective, physically fatigued, or heightened in your emotional sensitivity. Your body is working hard beneath the surface, shedding and renewing simultaneously.",
       balance: "Prioritize rest and solitude above all else. It is completely okay — necessary, even — to say no to social obligations. Your only job right now is to restore.",
       affirmation: "I honor my body's need for rest and release what no longer serves me — without guilt.",
+      snapshot: "Your body is in full shed and renewal mode. Estrogen and progesterone are at their lowest, which is exactly why everything feels heavier. This is not weakness — it is your system clearing the slate. Conserve energy deliberately today.",
+      todaysFocus: "One nourishing act of rest. Nothing more is required of you.",
       ritual: 'Create a warm, grounding sanctuary for yourself and drink a nourishing herbal tea in silence.',
       steps: [
         'Brew a cup of ginger or raspberry leaf tea and hold the warm mug with both hands for a full minute before drinking.',
@@ -39,6 +41,8 @@ export const getInnerSeason = (cycleDay, cycleLength = 28) => {
       feelings: "You may feel a rising surge of energy, mental optimism, and creative curiosity as estrogen steadily climbs. Ideas come quickly. The world feels full of possibility.",
       balance: "Pace yourself with intention. Use this rising energy to brainstorm, begin new habits, and say yes to things that excite you — but avoid burning out before your cycle reaches its peak.",
       affirmation: "I am open to bold new beginnings and I trust the creative energy flowing through me.",
+      snapshot: "Estrogen is climbing and your brain is literally producing more serotonin right now. Your focus is sharper, your tolerance is higher, and new ideas are surfacing faster than usual. This window is short — use it with intention.",
+      todaysFocus: "Start the one thing you've been putting off. Your body is chemically primed for it.",
       ritual: 'Plant a physical seed or write one clear, inspiring intention for this cycle on paper.',
       steps: [
         'Find a small pot, seed packet, or simply write your intention on a piece of paper.',
@@ -64,6 +68,8 @@ export const getInnerSeason = (cycleDay, cycleLength = 28) => {
       feelings: "You may feel highly sociable, magnetically confident, and physically charged with vitality. Communication flows naturally. People are drawn to your presence without you even trying.",
       balance: "Channel this outward peak energy into meaningful connection and bold expression. Show up, speak up, and let yourself be seen — but stay hydrated and grounded as you move through the world.",
       affirmation: "I am radiant, fully capable, and entirely worthy of taking up every inch of space.",
+      snapshot: "LH just surged and your body released an egg. Estrogen is at its absolute peak, which means so is your verbal fluency, pain tolerance, and social magnetism. People will respond to you differently today — lean into it.",
+      todaysFocus: "Say the thing you've been holding back. Make the ask. Have the conversation.",
       ritual: 'Schedule one important conversation, meeting, or creative act you have been putting off.',
       steps: [
         'Identify the one conversation, pitch, or creative act you have been delaying.',
@@ -89,6 +95,8 @@ export const getInnerSeason = (cycleDay, cycleLength = 28) => {
       feelings: "You might notice your energy turning noticeably inward, with a deep desire to organize, nest, and slow down. Emotions may feel closer to the surface. This is your body\'s intelligence — not a flaw.",
       balance: "Focus on completing what already exists rather than starting anything new. Forgive yourself for needing more sleep, more quiet, more softness. You are integrating all you have experienced.",
       affirmation: "I listen deeply to my body's boundaries and prepare my space for rest — without guilt.",
+      snapshot: "Progesterone is peaking then dropping, pulling your energy inward. Your brain is in detail and completion mode — not creation mode. You may feel more irritable or emotionally raw near the end of this phase; that is progesterone withdrawing, not a personal failing.",
+      todaysFocus: "Finish one thing. Tidy one space. Say no to one thing that drains you.",
       ritual: 'Prepare your physical space with intention — clear one area and create a nourishing evening routine.',
       steps: [
         'Choose one small area to tidy: your nightstand, desk, or kitchen counter. Remove anything that creates visual stress.',

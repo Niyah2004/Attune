@@ -6,22 +6,24 @@ import { Feather } from '@expo/vector-icons';
 import DailyVibeCheck from '../../components/DailyVibeCheck';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '../../theme/ThemeContext';
+import { getInnerSeason } from '../../services/CycleWisdom';
 
 export default function DashboardScreen() {
-  const [data, setData] = useState<any>(null);
   const [cycleDay, setCycleDay] = useState(1);
   const [totalDays, setTotalDays] = useState(28);
+  const [phase, setPhase] = useState<any>(getInnerSeason(1, 28));
   const { colors, isDark } = useTheme();
 
   const loadData = async () => {
     const raw = await getPrivateData();
-    setData(raw);
     const cycleLength = raw?.settings?.averageCycleLength || 28;
     setTotalDays(cycleLength);
     if (raw?.cycles?.length) {
       const start = new Date(raw.cycles[raw.cycles.length - 1].startDate);
       const diff = Math.floor((Date.now() - start.getTime()) / (1000 * 60 * 60 * 24)) + 1;
-      setCycleDay(Math.max(1, Math.min(diff, cycleLength)));
+      const day = Math.max(1, Math.min(diff, cycleLength));
+      setCycleDay(day);
+      setPhase(getInnerSeason(day, cycleLength));
     }
   };
 
@@ -52,12 +54,17 @@ export default function DashboardScreen() {
         <View style={[styles.shadowOffset, { backgroundColor: colors.border }]}>
           <View style={[styles.card, { backgroundColor: colors.card, borderColor: colors.border }]}>
             <View style={styles.cardHeader}>
-               <Feather name="target" size={24} color={colors.text} />
-               <Text style={[styles.cardTitle, { color: colors.text }]}>Follicular Phase</Text>
+              <Feather name="target" size={24} color={colors.text} />
+              <View>
+                <Text style={[styles.cardTitle, { color: colors.text }]}>{phase.name}</Text>
+                <Text style={[styles.cardCaption, { color: colors.textMuted }]}>{phase.vibe.toUpperCase()}</Text>
+              </View>
             </View>
-            <Text style={[styles.cardText, { color: colors.text }]}>
-              "Your energy is new beginnings right now. Honor the shift within."
-            </Text>
+            <Text style={[styles.cardText, { color: colors.text }]}>{phase.snapshot}</Text>
+            <View style={[styles.focusBlock, { backgroundColor: colors.highlight }]}>
+              <Text style={[styles.focusLabel, { color: colors.textMuted }]}>TODAY'S FOCUS</Text>
+              <Text style={[styles.focusText, { color: colors.text }]}>{phase.todaysFocus}</Text>
+            </View>
           </View>
         </View>
 
@@ -65,9 +72,7 @@ export default function DashboardScreen() {
         <View style={[styles.shadowOffset, { backgroundColor: colors.border }]}>
           <View style={[styles.card, { backgroundColor: colors.card, borderColor: colors.border }]}>
             <Text style={[styles.cardCaption, { color: colors.textMuted }]}>SPIRITUAL AFFIRMATION</Text>
-            <Text style={[styles.affirmationText, { color: colors.text }]}>
-              I am a seed of potential, ready to bloom in my own time.
-            </Text>
+            <Text style={[styles.affirmationText, { color: colors.text }]}>{phase.affirmation}</Text>
           </View>
         </View>
 
@@ -163,5 +168,21 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 24,
     transform: [{ translateX: -4 }, { translateY: -4 }],
-  }
+  },
+  focusBlock: {
+    borderRadius: 8,
+    padding: 14,
+    marginTop: 16,
+  },
+  focusLabel: {
+    fontSize: 9,
+    fontWeight: 'bold',
+    letterSpacing: 1.5,
+    marginBottom: 6,
+  },
+  focusText: {
+    fontSize: 13,
+    lineHeight: 20,
+    fontStyle: 'italic',
+  },
 });
