@@ -25,7 +25,7 @@ const LofiAudioPlayer = () => {
       } else {
         if (!sound) {
           const { sound: newSound } = await Audio.Sound.createAsync(
-            { uri: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
+            { uri: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3' },
             { shouldPlay: true, isLooping: true }
           );
           setSound(newSound);
@@ -63,7 +63,7 @@ const LofiAudioPlayer = () => {
         />
         <View style={styles.textStack}>
           <Text style={[styles.caption, { color: colors.textMuted }]}>NOW STREAMING</Text>
-          <Text style={[styles.title, { color: colors.text }]}>Midnight Tea (Lofi)</Text>
+          <Text style={[styles.title, { color: colors.text }]}>Gentle Acoustic & Rain</Text>
         </View>
         <Feather 
           name="volume-2" 
